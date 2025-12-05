@@ -1,3 +1,1 @@
-from django.db import models
-
-# Create your models here.
+# Models for the legacy api app are not used; catalog app defines data models.

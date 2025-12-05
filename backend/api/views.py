@@ -1,6 +1,12 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+# PUBLIC_INTERFACE
 @api_view(['GET'])
 def health(request):
+    """Health check endpoint.
+
+    Returns:
+        200 OK JSON body: {"message": "Server is up!"}
+    """
     return Response({"message": "Server is up!"})

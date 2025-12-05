@@ -42,10 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party apps
     'rest_framework',
     'drf_yasg',
     'corsheaders',
-    'api'
+
+    # Local apps
+    'api',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +137,20 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
+# Allow CORS from the React app by default (safe for local dev)
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://localhost:3000",
+]
+# If you want to override via env, set CORS_ALLOW_ALL_ORIGINS=true
+
+# REST framework defaults and simple pagination (~12 items per page)
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 12,
+}
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 X_FRAME_OPTIONS = 'ALLOWALL'
